@@ -10,19 +10,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.passwordstorer.R
+import com.example.passwordstorer.common.utils.eLog
 import com.example.passwordstorer.common.utils.safeNavigate
 import com.example.passwordstorer.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
+    private val TAG = this::class.simpleName.toString()
     private lateinit var binding: FragmentSplashBinding
     private val splashViewModel: SplashViewModel by viewModels()
 
-    var pinSetUpResult = false
-    var biometricSetUpResult = false
+    private var pinSetUpResult = false
+    private var biometricSetUpResult = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,16 +37,15 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         lifecycleScope.launch {
             splashViewModel.apply {
 
+//                isPinSetUpLiveData.removeObservers(viewLifecycleOwner)
                 isPinSetUpLiveData.observe(viewLifecycleOwner, { pinSetUpLiveDataResult ->
                     setPinSetUpBoolValue(pinSetUpLiveDataResult)
-                    pinSetUpResult = pinSetUpLiveDataResult
                 })
 
+//                isBiometricSetUpLiveData.removeObservers(viewLifecycleOwner)
                 isBiometricSetUpLiveData.observe(
-                    viewLifecycleOwner,
-                    { biometricSetUpLiveDataResult ->
+                    viewLifecycleOwner, { biometricSetUpLiveDataResult ->
                         setBiometricBoolValue(biometricSetUpLiveDataResult)
-                        biometricSetUpResult = biometricSetUpLiveDataResult
                     })
             }
         }
@@ -72,6 +74,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     private fun updateNavigation() {
         val pinSetUpResult: Boolean = getPinSetUpBoolValue()
         val biometricSetUpResult: Boolean = getBiometricBoolValue()
+        TAG.eLog("pinSetUpResult: $pinSetUpResult -> biometricSetUpResult: $biometricSetUpResult")
         var navDirections: NavDirections? = null
         if (!pinSetUpResult && !biometricSetUpResult) {
             navDirections = SplashFragmentDirections.actionSplashFragmentToSetUpPinFragment()

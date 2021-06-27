@@ -7,9 +7,11 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.passwordstorer.common.utils.Constants
+import com.example.passwordstorer.common.utils.eLog
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
@@ -21,11 +23,13 @@ private val Context.dataStore by preferencesDataStore(Constants.APP_DATA_STORE)
 class DataStoreManager @Inject constructor(@ApplicationContext context: Context) {
 
     private val appDataStore = context.dataStore
+    private val TAG = "DataStoreManager"
 
     suspend fun <T> setValue(
         key: Preferences.Key<T>,
         value: T
     ) {
+        TAG.eLog("setValue ---> key: $key -> value: $value")
         appDataStore.edit { preferences ->
             preferences[key] = value
         }
@@ -35,7 +39,10 @@ class DataStoreManager @Inject constructor(@ApplicationContext context: Context)
         key: Preferences.Key<T>,
         defaultValue: T
     ): Flow<T> {
-        return appDataStore.getValue(key, defaultValue)
+        val value = appDataStore.getValue(key, defaultValue)
+        TAG.eLog("getValue ---> key: $key")
+        TAG.eLog(" value: ${value.collect { println("---> $it") }}")
+        return value
     }
 
     suspend fun <T> DataStore<Preferences>.getValue(
