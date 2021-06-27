@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Password Storer</string>
+
+    <!--  Fonts  -->
+    <string name="poppins_regular">PoppinsRegular.ttf</string>
+
+
+    <string name="set_up_new_app_pin">Set Up New Pin to use App</string>
+    <string name="create_app_pin">Create Password Storer PIN</string>
+    <string name="create_app_pin_desc">Create a 4 digit Password Storer PIN</string>
+    <string name="or">Or</string>
+    <string name="use_your_screen_lock_pin">Use Your Screen Lock</string>
+    <string name="use_your_screen_lock_pin_desc">Protect Password Storer by using your existing phone screen lock</string>
+    <string name="authentication_failed">Authentication Failed</string>
+    <string name="authentication_success">Authentication Successful</string>
+    <string name="authentication_required">Authentication required</string>
+    <string name="pin_pattern_password">Pin, Pattern or Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="set_up_pin_title">Set-Up Pin</string>
+    <string name="set_up_4_digit_pin">Set up your 4 Digit digit Pin</string>
+    <string name="confirm_4_digit_pin">Confirm Pin</string>
+    <string name="save_pin">Save Pin</string>
+    <string name="error_pin_do_match">Pin do not match</string>
+    <string name="pin_saved_success">Pin Saved Successfully</string>
+    <string name="pin_saved_failed">Please try after some time</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

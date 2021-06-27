@@ -1,0 +1,53 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.PasswordStorer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/coal_black</item>
+    </style>
+    <style name="NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/coal_black</item>
+    </style>
+
+    <style name="largeTextStyle">
+        <item name="android:textSize">@dimen/large_text</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="customFont">@string/poppins_regular</item>
+    </style>
+
+    <style name="mediumTextStyle">
+        <item name="android:textSize">@dimen/medium_text</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="customFont">@string/poppins_regular</item>
+    </style>
+
+    <style name="smallTextStyle">
+        <item name="android:textSize">@dimen/small_text</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="customFont">@string/poppins_regular</item>
+    </style>
+
+    <style name="buttonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_text</item>
+        <item name="android:minWidth">@dimen/_160sdp</item>
+        <item name="customButtonFont">@string/poppins_regular</item>
+        <item name="cornerRadius">@dimen/_8sdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="backgroundTint">@color/coal_black</item>
+        <item name="strokeColor">@color/white</item>
+        <item name="strokeWidth">@dimen/_1sdp</item>
+        <item name="elevation">@dimen/_4sdp</item>
+    </style>
+
+</resources>
