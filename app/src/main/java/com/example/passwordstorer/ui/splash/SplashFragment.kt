@@ -4,20 +4,24 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.passwordstorer.R
+import com.example.passwordstorer.common.listeners.BiometricHelperListener
+import com.example.passwordstorer.common.utils.BiometricHelper
 import com.example.passwordstorer.common.utils.eLog
 import com.example.passwordstorer.common.utils.safeNavigate
+import com.example.passwordstorer.common.utils.toast
 import com.example.passwordstorer.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SplashFragment : Fragment(R.layout.fragment_splash) {
+class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListener {
 
     private val TAG = this::class.simpleName.toString()
     private lateinit var binding: FragmentSplashBinding
@@ -85,7 +89,19 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     }
 
     private fun startBiometricAuthentication() {
-        // TODO make Biometric class & start authentication
-        // TODO On success navigate to Dashboard Fragment
+        val biometricHelper = BiometricHelper(requireActivity(), this)
+        biometricHelper.apply {
+            if (isDeviceSecure()) authenticate()
+        }
+    }
+
+    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+        val navDirections = SplashFragmentDirections.actionSplashFragmentToDashboardFragment()
+        findNavController().safeNavigate(navDirections)
+    }
+
+    override fun onAuthenticationErrorFailed(errorCode: Int?, errString: CharSequence?) {
+        toast(getString(R.string.authentication_failed_try_again))
+        findNavController().popBackStack()
     }
 }

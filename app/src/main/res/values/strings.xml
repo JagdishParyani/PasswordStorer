@@ -12,6 +12,7 @@
     <string name="use_your_screen_lock_pin">Use Your Screen Lock</string>
     <string name="use_your_screen_lock_pin_desc">Protect Password Storer by using your existing phone screen lock</string>
     <string name="authentication_failed">Authentication Failed</string>
+    <string name="authentication_failed_try_again">Authentication Failed, Please try again after some time</string>
     <string name="authentication_success">Authentication Successful</string>
     <string name="authentication_required">Authentication required</string>
     <string name="pin_pattern_password">Pin, Pattern or Password</string>
