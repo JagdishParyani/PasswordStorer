@@ -34,14 +34,12 @@ class SetUpPinViewModel @Inject constructor(
     fun updateBiometricAuthentication(isEnable: Boolean) {
         viewModelScope.launch {
             dataStoreManager.setValue(PreferenceKeys.IS_BIOMETRIC_SETUP, isEnable)
-            updatePinAuthentication(!isEnable)
         }
     }
 
     fun updatePinAuthentication(isEnable: Boolean) {
         viewModelScope.launch {
             dataStoreManager.setValue(PreferenceKeys.IS_PIN_SETUP, isEnable)
-            updateBiometricAuthentication(!isEnable)
         }
     }
 }

@@ -14,7 +14,6 @@ import com.example.passwordstorer.common.utils.eLog
 import com.example.passwordstorer.common.utils.safeNavigate
 import com.example.passwordstorer.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -35,19 +34,14 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     private fun initViews() {
         lifecycleScope.launch {
-            splashViewModel.apply {
+            splashViewModel.isPinSetUpLiveData.observe(viewLifecycleOwner, {
+                setPinSetUpBoolValue(it)
+            })
 
-//                isPinSetUpLiveData.removeObservers(viewLifecycleOwner)
-                isPinSetUpLiveData.observe(viewLifecycleOwner, { pinSetUpLiveDataResult ->
-                    setPinSetUpBoolValue(pinSetUpLiveDataResult)
+            splashViewModel.isBiometricSetUpLiveData.observe(
+                viewLifecycleOwner, { biometricSetUpLiveDataResult ->
+                    setBiometricBoolValue(biometricSetUpLiveDataResult)
                 })
-
-//                isBiometricSetUpLiveData.removeObservers(viewLifecycleOwner)
-                isBiometricSetUpLiveData.observe(
-                    viewLifecycleOwner, { biometricSetUpLiveDataResult ->
-                        setBiometricBoolValue(biometricSetUpLiveDataResult)
-                    })
-            }
         }
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -56,6 +50,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     }
 
     private fun setBiometricBoolValue(biometricSetUpLiveDataResult: Boolean) {
+        TAG.eLog("$biometricSetUpLiveDataResult")
         this.biometricSetUpResult = biometricSetUpLiveDataResult
     }
 
@@ -64,6 +59,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     }
 
     private fun setPinSetUpBoolValue(pinSetUpLiveDataResult: Boolean) {
+        TAG.eLog("$pinSetUpLiveDataResult")
         this.pinSetUpResult = pinSetUpLiveDataResult
     }
 

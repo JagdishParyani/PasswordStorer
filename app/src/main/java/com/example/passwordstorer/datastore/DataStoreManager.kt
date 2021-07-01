@@ -11,7 +11,6 @@ import com.example.passwordstorer.common.utils.eLog
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
@@ -39,23 +38,21 @@ class DataStoreManager @Inject constructor(@ApplicationContext context: Context)
         key: Preferences.Key<T>,
         defaultValue: T
     ): Flow<T> {
-        val value = appDataStore.getValue(key, defaultValue)
-        TAG.eLog("getValue ---> key: $key")
-        TAG.eLog(" value: ${value.collect { println("---> $it") }}")
-        return value
+        return appDataStore.getValue(key, defaultValue)
     }
 
     suspend fun <T> DataStore<Preferences>.getValue(
         key: Preferences.Key<T>,
         defaultValue: T
     ): Flow<T> {
-        return this.data.catch { e ->
+        return data.catch { e ->
             if (e is IOException) {
                 emit(emptyPreferences())
             } else {
                 throw e
             }
         }.map { preferences ->
+            TAG.eLog("key -> $key  value -> ${preferences[key]}")
             preferences[key] ?: defaultValue
 
         }

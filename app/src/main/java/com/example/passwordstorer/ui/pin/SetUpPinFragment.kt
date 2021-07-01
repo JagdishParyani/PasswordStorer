@@ -94,6 +94,7 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
 
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 toast(getString(R.string.authentication_success))
+                updatePinAndBiometricAuthentication(false)
                 navigateToDashboardScreen()
             }
 
@@ -143,19 +144,23 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
         setUpPinViewModel.insertResultLiveData.observe(viewLifecycleOwner, Observer { result ->
             if (result != -1L) {
                 toast(getString(R.string.pin_saved_success))
+                updatePinAndBiometricAuthentication(true)
                 navigateToLoginScreen()
             } else toast(getString(R.string.pin_saved_failed))
         })
     }
 
+    private fun updatePinAndBiometricAuthentication(isPinEnabled: Boolean) {
+        setUpPinViewModel.updatePinAuthentication(isPinEnabled)
+        setUpPinViewModel.updateBiometricAuthentication(!isPinEnabled)
+    }
+
     private fun navigateToLoginScreen() {
-        setUpPinViewModel.updatePinAuthentication(true)
         val actionLogin = SetUpPinFragmentDirections.actionSetUpPinFragmentToLoginFragment()
         Navigation.findNavController(binding.root).navigate(actionLogin)
     }
 
     private fun navigateToDashboardScreen() {
-        setUpPinViewModel.updateBiometricAuthentication(true)
         val actionDashboard = SetUpPinFragmentDirections.actionSetUpPinFragmentToDashboardFragment()
         Navigation.findNavController(binding.root).navigate(actionDashboard)
     }
