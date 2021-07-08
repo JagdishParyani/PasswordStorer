@@ -4,15 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".ui.splash.SplashActivity">
+    android:background="@color/coal_black"
+    tools:context=".ui.splash.SplashFragment">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottie_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="splash.json"
-        app:lottie_loop="true"/>
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/lottie_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_fileName="splash.json"-->
+<!--        app:lottie_loop="true"/>-->
+
+    <com.example.passwordstorer.common.customviews.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:customFont="@string/font_awesome_solid"
+        android:text="@string/eye_icon"
+        android:textSize="@dimen/_100ssp"
+        android:textColor="@color/white"
+        />
 
 </RelativeLayout>

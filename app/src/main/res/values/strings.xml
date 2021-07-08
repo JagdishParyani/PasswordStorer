@@ -3,7 +3,10 @@
 
     <!--  Fonts  -->
     <string name="poppins_regular">PoppinsRegular.ttf</string>
+    <string name="font_awesome_solid">fa-solid.ttf</string>
 
+    <string name="back_icon">&#xf137;</string>
+    <string name="eye_icon">&#xf06e;</string>
 
     <string name="set_up_new_app_pin">Set Up New Pin to use App</string>
     <string name="create_app_pin">Create Password Storer PIN</string>
@@ -19,13 +22,17 @@
     <string name="cancel">Cancel</string>
     <string name="set_up_pin_title">Set-Up Pin</string>
     <string name="enter_login_pin">Enter Password Storer Pin</string>
+    <string name="reset_pin">Reset PIN</string>
     <string name="set_up_4_digit_pin">Set up your 4 Digit digit Pin</string>
     <string name="confirm_4_digit_pin">Confirm Pin</string>
     <string name="save_pin">Save Pin</string>
     <string name="error_pin_do_match">Pin do not match</string>
-    <string name="error_incorrect_pin">Please enter correct Pin</string>
+    <string name="error_incorrect_pin">Incorrect PIN. Try Again</string>
+    <string name="forgot_pin">Forgot PIN?</string>
     <string name="pin_saved_success">Pin Saved Successfully</string>
+    <string name="pin_reset_success">Pin changed Successfully</string>
     <string name="pin_saved_failed">Please try after some time</string>
+    <string name="pin_reset_failed">Pin Reset failed, Please try after some time</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

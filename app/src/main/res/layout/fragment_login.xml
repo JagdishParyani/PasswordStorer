@@ -8,33 +8,9 @@
     android:visibility="visible"
     tools:context=".ui.login.LoginFragment">
 
-    <com.example.passwordstorer.common.customviews.CustomTextView
-        style="@style/largeTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enter_login_pin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
-
-    <com.example.passwordstorer.common.customviews.PinEntryView
-        android:id="@+id/login_pin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        app:digitBackground="@drawable/pin_background"
-        app:digitTextColor="@color/white"
-        app:digitTextSize="@dimen/medium_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:numDigits="4"
-        app:pinInputType="number" />
+    <include
+        android:id="@+id/include_login_pin"
+        layout="@layout/layout_pin" />
 
     <com.example.passwordstorer.common.customviews.CustomTextView
         android:id="@+id/tv_error_text"
@@ -47,7 +23,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_pin"
+        app:layout_constraintTop_toBottomOf="@id/include_login_pin"
         app:layout_constraintVertical_bias="0.1" />
+
+    <com.example.passwordstorer.common.customviews.CustomMaterialButton
+        android:id="@+id/btn_forgot_pin"
+        style="@style/buttonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="@string/forgot_pin"
+        android:textColor="@color/link_color"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_error_text"
+        app:layout_constraintVertical_bias="0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

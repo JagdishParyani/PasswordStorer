@@ -50,7 +50,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
 
         Handler(Looper.getMainLooper()).postDelayed({
             updateNavigation()
-        }, 5000)
+        }, 2000)
     }
 
     private fun setBiometricBoolValue(biometricSetUpLiveDataResult: Boolean) {
@@ -102,6 +102,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
 
     override fun onAuthenticationErrorFailed(errorCode: Int?, errString: CharSequence?) {
         toast(getString(R.string.authentication_failed_try_again))
-        findNavController().popBackStack()
+        val boolean = findNavController().popBackStack(0,true)
+        if (!boolean) requireActivity().finish()
     }
 }

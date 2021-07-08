@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.example.passwordstorer.common.customviews.CustomTextView
+        android:id="@+id/app_logo_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:customFont="@string/font_awesome_solid"
+        android:text="@string/eye_icon"
+        android:textSize="@dimen/_70ssp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.passwordstorer.common.customviews.CustomTextView
+        android:id="@+id/tv_screen_pin_title"
+        style="@style/largeTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="@string/enter_login_pin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_logo_image" />
+
+    <com.example.passwordstorer.common.customviews.PinEntryView
+        android:id="@+id/pin_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        app:digitBackground="@drawable/pin_background"
+        app:digitTextColor="@color/white"
+        app:digitTextSize="@dimen/medium_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_screen_pin_title"
+        app:numDigits="4"
+        app:pinInputType="number" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

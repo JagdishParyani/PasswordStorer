@@ -34,7 +34,6 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
         binding = FragmentSetUpPinBinding.bind(view)
         setUpClickListeners()
         initViews()
-        //setupviewModel()
     }
 
     private fun setUpClickListeners() {
@@ -58,15 +57,6 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
             binding.rbCreatePin -> initSetUpPin()
             binding.rbUseExistingPin -> startSettingsScreenLockIntent()
             binding.btnSave -> savePinToDB()
-        }
-    }
-
-    // Just Checked here need to make more changes
-    private fun setupviewModel() {
-        lifecycleScope.launch {
-            setUpPinViewModel.liveDataPin.observe(viewLifecycleOwner, Observer { pin ->
-                toast(pin)
-            })
         }
     }
 

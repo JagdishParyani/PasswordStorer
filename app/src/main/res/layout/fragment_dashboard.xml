@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextView
         style="@style/largeTextStyle"
         android:layout_width="wrap_content"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:text="Dashboard Fragment" />
 
-</LinearLayout>
+<!--    <com.example.passwordstorer.common.customviews.CustomTextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/_20sdp"-->
+<!--        android:text="@string/back_icon"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="@dimen/_20ssp"-->
+<!--        app:customFont="@string/font_awesome_solid" />-->
+
+    </LinearLayout>
+</FrameLayout>

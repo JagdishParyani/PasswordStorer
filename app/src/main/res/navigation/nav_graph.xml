@@ -52,11 +52,21 @@
             app:destination="@id/dashboardFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPinFragment"
+            app:destination="@id/forgotPinFragment"
+            />
+
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.passwordstorer.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/forgotPinFragment"
+        android:name="com.example.passwordstorer.ui.forgotpin.ForgotPinFragment"
+        android:label="ForgotPinFragment"
+        tools:layout="@layout/fragment_forgot_pin"/>
 
 </navigation>
