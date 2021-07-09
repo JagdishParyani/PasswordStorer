@@ -8,7 +8,7 @@
         android:id="@+id/app_logo_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         app:customFont="@string/font_awesome_solid"
         android:text="@string/eye_icon"
         android:textSize="@dimen/_70ssp"

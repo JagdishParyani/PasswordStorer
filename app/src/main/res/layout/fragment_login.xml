@@ -10,7 +10,8 @@
 
     <include
         android:id="@+id/include_login_pin"
-        layout="@layout/layout_pin" />
+        layout="@layout/layout_pin"
+        />
 
     <com.example.passwordstorer.common.customviews.CustomTextView
         android:id="@+id/tv_error_text"

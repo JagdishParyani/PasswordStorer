@@ -15,4 +15,8 @@ class AppDatabaseRepositoryImpl @Inject constructor(private val pinDao: PinDao) 
         return pinDao.getPin()
     }
 
+    override suspend fun updatePin(oldPin: PinEntity, newPin: PinEntity): Long {
+        return pinDao.updatePin(oldPin, newPin)
+    }
+
 }

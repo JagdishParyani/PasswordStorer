@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.passwordstorer.R
 import com.example.passwordstorer.common.utils.hide
+import com.example.passwordstorer.common.utils.hideKeyboard
 import com.example.passwordstorer.common.utils.safeNavigate
 import com.example.passwordstorer.common.utils.show
 import com.example.passwordstorer.databinding.FragmentLoginBinding
@@ -43,6 +44,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
                 hideViews()
                 if (s?.length == 4) {
                     loginViewModel.isPinEqual(s.toString())
+                    hideKeyboard()
                 }
             }
 

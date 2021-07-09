@@ -16,14 +16,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.example.passwordstorer.common.customviews.CustomTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/back_icon"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20ssp"
-            app:customFont="@string/font_awesome_solid" />
+<!--        <com.example.passwordstorer.common.customviews.CustomTextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="@dimen/_10sdp"-->
+<!--            android:text="@string/back_icon"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="@dimen/_20ssp"-->
+<!--            app:customFont="@string/font_awesome_solid" />-->
 
     </androidx.appcompat.widget.Toolbar>
 

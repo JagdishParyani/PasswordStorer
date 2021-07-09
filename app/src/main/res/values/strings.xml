@@ -21,7 +21,7 @@
     <string name="pin_pattern_password">Pin, Pattern or Password</string>
     <string name="cancel">Cancel</string>
     <string name="set_up_pin_title">Set-Up Pin</string>
-    <string name="enter_login_pin">Enter Password Storer Pin</string>
+    <string name="enter_login_pin">Enter Pin to Login</string>
     <string name="reset_pin">Reset PIN</string>
     <string name="set_up_4_digit_pin">Set up your 4 Digit digit Pin</string>
     <string name="confirm_4_digit_pin">Confirm Pin</string>

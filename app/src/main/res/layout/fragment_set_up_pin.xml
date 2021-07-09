@@ -10,7 +10,7 @@
         android:id="@+id/cl_select_pin_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/rb_create_pin"
@@ -140,7 +140,7 @@
         android:id="@+id/cl_set_up_pin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <com.example.passwordstorer.common.customviews.CustomTextView
             style="@style/largeTextStyle"

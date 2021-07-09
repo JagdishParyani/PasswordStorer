@@ -8,15 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.passwordstorer.R
+import com.example.passwordstorer.common.utils.hideKeyboard
 import com.example.passwordstorer.common.utils.text
 import com.example.passwordstorer.common.utils.toast
 import com.example.passwordstorer.databinding.FragmentForgotPinBinding
 import com.example.passwordstorer.room.entity.PinEntity
-import com.example.passwordstorer.ui.pin.SetUpPinFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ForgotPinFragment : Fragment(R.layout.fragment_forgot_pin) {
 
     lateinit var binding: FragmentForgotPinBinding
@@ -35,8 +37,9 @@ class ForgotPinFragment : Fragment(R.layout.fragment_forgot_pin) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.length == 4){
+                if (s?.length == 4) {
                     resetPinToDB()
+                    hideKeyboard()
                 }
             }
 
@@ -49,7 +52,7 @@ class ForgotPinFragment : Fragment(R.layout.fragment_forgot_pin) {
         lifecycleScope.launch {
             binding.includeForgotPin.pinView.text()
             resetPinLiveData()
-            forgotPinViewModel.insertPin(PinEntity(binding.includeForgotPin.pinView.text()))
+            forgotPinViewModel.updatePin(PinEntity(binding.includeForgotPin.pinView.text()))
         }
     }
 
@@ -57,25 +60,13 @@ class ForgotPinFragment : Fragment(R.layout.fragment_forgot_pin) {
         forgotPinViewModel.insertResultLiveData.observe(viewLifecycleOwner, Observer { result ->
             if (result != -1L) {
                 toast(getString(R.string.pin_reset_success))
-//                updatePinAndBiometricAuthentication(true)
-//                navigateToLoginScreen()
+                navigateToLoginScreen()
             } else toast(getString(R.string.pin_saved_failed))
         })
     }
 
-//    private fun updatePinAndBiometricAuthentication(isPinEnabled: Boolean) {
-//        forgotPinViewModel.updatePinAuthentication(isPinEnabled)
-//        forgotPinViewModel.updateBiometricAuthentication(!isPinEnabled)
-//    }
-
-//    private fun navigateToLoginScreen() {
-//        val actionLogin = SetUpPinFragmentDirections.actionSetUpPinFragmentToLoginFragment()
-//        Navigation.findNavController(binding.root).navigate(actionLogin)
-//    }
-
-//    private fun navigateToDashboardScreen() {
-//        val actionDashboard = SetUpPinFragmentDirections.actionSetUpPinFragmentToDashboardFragment()
-//        Navigation.findNavController(binding.root).navigate(actionDashboard)
-//    }
+    private fun navigateToLoginScreen() {
+        findNavController().popBackStack()
+    }
 
 }

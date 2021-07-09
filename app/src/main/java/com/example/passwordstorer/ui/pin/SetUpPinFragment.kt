@@ -3,13 +3,15 @@ package com.example.passwordstorer.ui.pin
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.passwordstorer.R
 import com.example.passwordstorer.common.listeners.BiometricHelperListener
 import com.example.passwordstorer.common.utils.*
@@ -66,6 +68,34 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
             binding.clSetUpPin.show()
         }, 500)
         binding.btnSave.setOnClickListener(this)
+
+        binding.setUpPin.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s?.length == 4) {
+                    binding.confirmPin.requestFocus()
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+
+        binding.confirmPin.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s?.length == 4) hideKeyboard()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
     }
 
     private fun startSettingsScreenLockIntent() {
@@ -113,11 +143,11 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
 
     private fun navigateToLoginScreen() {
         val actionLogin = SetUpPinFragmentDirections.actionSetUpPinFragmentToLoginFragment()
-        Navigation.findNavController(binding.root).navigate(actionLogin)
+        findNavController().safeNavigate(actionLogin)
     }
 
     private fun navigateToDashboardScreen() {
         val actionDashboard = SetUpPinFragmentDirections.actionSetUpPinFragmentToDashboardFragment()
-        Navigation.findNavController(binding.root).navigate(actionDashboard)
+        findNavController().safeNavigate(actionDashboard)
     }
 }

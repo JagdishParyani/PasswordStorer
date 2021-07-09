@@ -18,10 +18,12 @@ class ForgotPinViewModel @Inject constructor(
 
     var insertResultLiveData = MutableLiveData<Long>()
 
-    fun insertPin(pin: PinEntity) {
+    fun updatePin(newPin: PinEntity) {
         var result: Long = -1
         viewModelScope.launch {
-            result = appDataBaseRepository.insertPin(pin)
+            val oldPinString = appDataBaseRepository.getPinFromDb()
+            val oldPin = PinEntity(oldPinString)
+            result = appDataBaseRepository.updatePin(oldPin,newPin)
             insertResultLiveData.value = result
         }
     }

@@ -1,9 +1,6 @@
 package com.example.passwordstorer.room.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.passwordstorer.room.entity.PinEntity
 
 @Dao
@@ -15,4 +12,13 @@ interface PinDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPin(pin: PinEntity): Long
+
+    @Transaction
+    suspend fun updatePin(oldPin: PinEntity, newPin: PinEntity): Long {
+        deletePin(oldPin)
+        return insertPin(newPin)
+    }
+
+    @Delete
+    fun deletePin(pin: PinEntity)
 }
