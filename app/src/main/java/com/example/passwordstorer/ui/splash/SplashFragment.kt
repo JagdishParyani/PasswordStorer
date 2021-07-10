@@ -103,6 +103,9 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
     override fun onAuthenticationErrorFailed(errorCode: Int?, errString: CharSequence?) {
         toast(getString(R.string.authentication_failed_try_again))
         val boolean = findNavController().popBackStack(0,true)
-        if (!boolean) requireActivity().finish()
+        if (!boolean) {
+            requireActivity().finish()
+            requireActivity().overridePendingTransition(R.anim.slide_out_right,R.anim.slide_in_right)
+        }
     }
 }

@@ -27,6 +27,8 @@
     <string name="confirm_4_digit_pin">Confirm Pin</string>
     <string name="save_pin">Save Pin</string>
     <string name="error_pin_do_match">Pin do not match</string>
+    <string name="error_pin_blank">Pin cannot be blank</string>
+    <string name="error_confirm_pin_blank">Confirm Pin cannot be blank</string>
     <string name="error_incorrect_pin">Incorrect PIN. Try Again</string>
     <string name="forgot_pin">Forgot PIN?</string>
     <string name="pin_saved_success">Pin Saved Successfully</string>

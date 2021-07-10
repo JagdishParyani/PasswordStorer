@@ -44,6 +44,7 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
     }
 
     private fun initViews() {
+        binding.clSelectPinLayout.show()
         biometricHelper = BiometricHelper(requireActivity(), this)
         if (!biometricHelper.isDeviceSecure()) {
             binding.tvUseExistingPin.hide()
@@ -62,8 +63,27 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
         }
     }
 
-    private fun initSetUpPin() {
+    private fun startSettingsScreenLockIntent() {
+        biometricHelper.authenticate()
+    }
+
+    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
         Handler(Looper.getMainLooper()).postDelayed({
+            toast(getString(R.string.authentication_success))
+            updatePinAndBiometricAuthentication(false)
+            navigateToDashboardScreen()
+        },500)
+    }
+
+    override fun onAuthenticationErrorFailed(errorCode: Int?, errString: CharSequence?) {
+        toast(getString(R.string.authentication_failed))
+        binding.rbUseExistingPin.isChecked = !binding.rbUseExistingPin.isChecked
+    }
+
+    private fun initSetUpPin() {
+        hideShowConfirPinViews(false)
+        Handler(Looper.getMainLooper()).postDelayed({
+            loadSetUpPinLayoutAnim()
             binding.clSelectPinLayout.hide()
             binding.clSetUpPin.show()
         }, 500)
@@ -74,7 +94,11 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.tvErrorText.hide()
                 if (s?.length == 4) {
+                    hideKeyboard()
+                    hideShowConfirPinViews(true)
+                    hideShowPinViews(false)
                     binding.confirmPin.requestFocus()
                 }
             }
@@ -86,10 +110,15 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
 
         binding.confirmPin.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.length == 4) hideKeyboard()
+                if (s?.length == 1) {
+                    binding.tvErrorText.hide()
+                } else if (s?.length == 4) {
+                    hideKeyboard()
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -98,31 +127,80 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
         })
     }
 
-    private fun startSettingsScreenLockIntent() {
-        biometricHelper.authenticate()
+    private fun hideShowConfirPinViews(show: Boolean) {
+        if (show) {
+            binding.btnSave.show()
+            binding.confirmPin.show()
+            binding.tvConfirmPin.show()
+            loadConfirmViewSlideInAnim()
+        } else {
+            binding.btnSave.hide()
+            binding.confirmPin.hide()
+            binding.tvConfirmPin.hide()
+        }
     }
 
-    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-        toast(getString(R.string.authentication_success))
-        updatePinAndBiometricAuthentication(false)
-        navigateToDashboardScreen()
+    private fun loadSetUpPinLayoutAnim(){
+        loadAnimation(binding.clSetUpPin,R.anim.slide_in_right)
+        loadAnimation(binding.clSelectPinLayout, R.anim.slide_out_left)
     }
 
-    override fun onAuthenticationErrorFailed(errorCode: Int?, errString: CharSequence?) {
-        toast(getString(R.string.authentication_failed))
-        binding.rbUseExistingPin.isChecked = !binding.rbUseExistingPin.isChecked
+    private fun loadConfirmViewSlideInAnim() {
+        loadAnimation(
+            binding.tvConfirmPin,
+            binding.confirmPin, binding.btnSave, animId = R.anim.slide_in_right
+        )
+        loadAnimation(
+            binding.tvSetUp4Pin,
+            binding.setUpPin, binding.tvErrorText, animId = R.anim.slide_out_left
+        )
+    }
+
+    private fun loadPinViewSlideInAnim() {
+        loadAnimation(
+            binding.tvSetUp4Pin,
+            binding.setUpPin, binding.tvErrorText, animId = R.anim.slide_in_right
+        )
+        loadAnimation(
+            binding.tvConfirmPin,
+            binding.confirmPin, binding.btnSave, animId = R.anim.slide_out_left
+        )
+    }
+
+    private fun hideShowPinViews(show: Boolean) {
+        if (show) {
+            binding.setUpPin.show()
+            binding.tvSetUp4Pin.show()
+            loadPinViewSlideInAnim()
+        } else {
+            binding.setUpPin.hide()
+            binding.tvSetUp4Pin.hide()
+        }
     }
 
     private fun savePinToDB() {
-        if (binding.setUpPin.text() == binding.confirmPin.text()) {
-            lifecycleScope.launch {
-                setUpInsertPinLiveData()
-                setUpPinViewModel.insertPin(PinEntity(binding.setUpPin.text.toString()))
+        when {
+            binding.confirmPin.isTextBlank() -> {
+                binding.tvErrorText.text = getString(R.string.error_confirm_pin_blank)
+                binding.tvErrorText.show()
+                return
             }
-        } else {
-            binding.setUpPin.clearText()
-            binding.confirmPin.clearText()
-            binding.tvErrorText.show()
+
+            binding.setUpPin.text() != binding.confirmPin.text() -> {
+                hideShowConfirPinViews(false)
+                hideShowPinViews(true)
+                binding.setUpPin.clearText()
+                binding.confirmPin.clearText()
+                binding.tvErrorText.text = getString(R.string.error_pin_do_match)
+                binding.tvErrorText.show()
+            }
+
+            else -> {
+                lifecycleScope.launch {
+                    setUpInsertPinLiveData()
+                    setUpPinViewModel.insertPin(PinEntity(binding.setUpPin.text.toString()))
+                }
+            }
         }
     }
 

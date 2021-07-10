@@ -10,7 +10,7 @@
         android:id="@+id/cl_select_pin_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:id="@+id/rb_create_pin"
@@ -188,11 +188,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirm_4_digit_pin"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/set_up_pin"
-            app:layout_constraintVertical_bias="0.15" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.22" />
 
         <com.example.passwordstorer.common.customviews.PinEntryView
             android:id="@+id/confirm_pin"
@@ -202,12 +203,13 @@
             android:layout_marginEnd="@dimen/_20sdp"
             app:digitBackground="@drawable/pin_background"
             app:digitTextColor="@color/white"
+            android:visibility="gone"
             app:digitTextSize="@dimen/medium_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_confirm_pin"
-            app:layout_constraintVertical_bias="0.08"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
             app:numDigits="4"
             app:pinInputType="number" />
 
@@ -235,7 +237,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="0.8" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
