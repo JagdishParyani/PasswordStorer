@@ -7,6 +7,7 @@
 
     <string name="back_icon">&#xf137;</string>
     <string name="eye_icon">&#xf06e;</string>
+    <string name="add_icon">&#xf0fe;</string>
 
     <string name="set_up_new_app_pin">Set Up New Pin to use App</string>
     <string name="create_app_pin">Create Password Storer PIN</string>
@@ -37,5 +38,8 @@
     <string name="pin_reset_failed">Pin Reset failed, Please try after some time</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings">Settings</string>
+    <string name="list">List</string>
+    <string name="dashboard">Dashboard</string>
 
 </resources>

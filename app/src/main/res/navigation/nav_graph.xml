@@ -29,8 +29,8 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -53,8 +53,8 @@
             app:popUpTo="@id/setUpPinFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_setUpPinFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
+            android:id="@+id/action_setUpPinFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -68,8 +68,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -86,10 +86,10 @@
 
     </fragment>
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.example.passwordstorer.ui.dashboard.DashboardFragment"
-        android:label="DashboardFragment"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/homeFragment"
+        android:name="com.example.passwordstorer.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/forgotPinFragment"
         android:name="com.example.passwordstorer.ui.forgotpin.ForgotPinFragment"

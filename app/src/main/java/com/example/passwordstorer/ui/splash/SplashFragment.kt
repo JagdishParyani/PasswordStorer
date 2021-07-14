@@ -17,6 +17,7 @@ import com.example.passwordstorer.common.utils.eLog
 import com.example.passwordstorer.common.utils.safeNavigate
 import com.example.passwordstorer.common.utils.toast
 import com.example.passwordstorer.databinding.FragmentSplashBinding
+import com.example.passwordstorer.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -96,16 +97,15 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
     }
 
     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-        val navDirections = SplashFragmentDirections.actionSplashFragmentToDashboardFragment()
+        val navDirections = SplashFragmentDirections.actionSplashFragmentToHomeFragment()
         findNavController().safeNavigate(navDirections)
     }
 
     override fun onAuthenticationErrorFailed(errorCode: Int?, errString: CharSequence?) {
         toast(getString(R.string.authentication_failed_try_again))
-        val boolean = findNavController().popBackStack(0,true)
+        val boolean = findNavController().popBackStack(0, true)
         if (!boolean) {
-            requireActivity().finish()
-            requireActivity().overridePendingTransition(R.anim.slide_out_right,R.anim.slide_in_right)
+            (requireActivity() as MainActivity).finish()
         }
     }
 }

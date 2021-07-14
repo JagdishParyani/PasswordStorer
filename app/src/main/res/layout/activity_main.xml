@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
+    <!--
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -16,17 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        <com.example.passwordstorer.common.customviews.CustomTextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="@dimen/_10sdp"-->
-<!--            android:text="@string/back_icon"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="@dimen/_20ssp"-->
-<!--            app:customFont="@string/font_awesome_solid" />-->
+&lt;!&ndash;        <com.example.passwordstorer.common.customviews.CustomTextView&ndash;&gt;
+&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;
+&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;
+&lt;!&ndash;            android:padding="@dimen/_10sdp"&ndash;&gt;
+&lt;!&ndash;            android:text="@string/back_icon"&ndash;&gt;
+&lt;!&ndash;            android:textColor="@color/white"&ndash;&gt;
+&lt;!&ndash;            android:textSize="@dimen/_20ssp"&ndash;&gt;
+&lt;!&ndash;            app:customFont="@string/font_awesome_solid" />&ndash;&gt;
 
     </androidx.appcompat.widget.Toolbar>
-
+-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"

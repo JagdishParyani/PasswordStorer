@@ -2,10 +2,6 @@ package com.example.passwordstorer.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.example.passwordstorer.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,4 +20,9 @@ class MainActivity : AppCompatActivity() {
 //            navController.graph)
 //        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
     }
+
+//    override fun finish() {
+//        super.finish()
+//        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+//    }
 }

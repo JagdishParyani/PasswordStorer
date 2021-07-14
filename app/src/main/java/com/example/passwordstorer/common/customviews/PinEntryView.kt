@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
-import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import android.os.Parcelable.Creator
@@ -201,11 +200,11 @@ class PinEntryView @JvmOverloads constructor(
     var text: Editable
         get() = editText!!.text
         set(text) {
-            var text: CharSequence = text
-            if (text.length > digits) {
-                text = text.subSequence(0, digits)
+            var value: CharSequence = text
+            if (value.length > digits) {
+                value = value.subSequence(0, digits)
             }
-            editText!!.setText(text)
+            editText!!.setText(value)
         }
 
     /**
@@ -228,16 +227,14 @@ class PinEntryView @JvmOverloads constructor(
             digitView.setTextColor(digitTextColor)
             digitView.setTextSize(TypedValue.COMPLEX_UNIT_PX, digitTextSize.toFloat())
             digitView.gravity = Gravity.CENTER
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                digitView.elevation = digitElevation.toFloat()
-            }
+            digitView.elevation = digitElevation.toFloat()
             addView(digitView)
         }
 
         // Add an "invisible" edit text to handle input
         editText = EditText(context)
-        editText!!.setBackgroundColor(resources.getColor(android.R.color.transparent))
-        editText!!.setTextColor(resources.getColor(android.R.color.transparent))
+        editText!!.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
+        editText!!.setTextColor(ContextCompat.getColor(context, android.R.color.transparent))
         editText!!.isCursorVisible = false
         editText!!.filters = arrayOf<InputFilter>(LengthFilter(digits))
         editText!!.inputType = inputType

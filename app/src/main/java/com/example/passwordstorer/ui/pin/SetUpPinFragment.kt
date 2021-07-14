@@ -225,7 +225,7 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
     }
 
     private fun navigateToDashboardScreen() {
-        val actionDashboard = SetUpPinFragmentDirections.actionSetUpPinFragmentToDashboardFragment()
+        val actionDashboard = SetUpPinFragmentDirections.actionSetUpPinFragmentToHomeFragment()
         findNavController().safeNavigate(actionDashboard)
     }
 }

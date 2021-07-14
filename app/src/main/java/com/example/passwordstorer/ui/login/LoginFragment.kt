@@ -76,7 +76,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), View.OnClickListener {
     }
 
     private fun navigateToDashBoard() {
-        val navDirections = LoginFragmentDirections.actionLoginFragmentToDashboardFragment()
+        val navDirections = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
         findNavController().safeNavigate(navDirections)
     }
 
