@@ -12,17 +12,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        val navController = (supportFragmentManager.findFragmentById(binding.fragmentContainer.id)
-//                as NavHostFragment).navController
-//
-//        val appBarConfiguration = AppBarConfiguration(
-//            navController.graph)
-//        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
     }
-
-//    override fun finish() {
-//        super.finish()
-//        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-//    }
 }

@@ -16,18 +16,17 @@
             app:defaultNavHost="false"
             app:navGraph="@navigation/home_nav_graph" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <com.example.passwordstorer.common.customviews.CustomBottomNav
             android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_50sdp"
             android:layout_alignParentBottom="true"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_20sdp"
             android:background="@drawable/rounded_corners"
-            android:elevation="@dimen/_20sdp"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/item_selector"
             app:itemRippleColor="@color/white"
+            app:itemTextColor="@color/item_selector"
             app:menu="@menu/bottom_menu" />
 
     </RelativeLayout>

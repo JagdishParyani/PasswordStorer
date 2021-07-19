@@ -1,8 +1,10 @@
 package com.example.passwordstorer.common.utils
 
+import android.graphics.Typeface
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import com.example.passwordstorer.BuildConfig
@@ -14,6 +16,20 @@ fun NavController.safeNavigate(direction: NavDirections) {
         "eLog".eLog("Click Propagated")
         navigate(direction)
     }
+}
+
+fun View.getCustomTypeFace(customFont: String): Typeface {
+    var customTypeface: Typeface = if (this is TextView) {
+        this.typeface
+    } else {
+        Typeface.DEFAULT
+    }
+    try {
+        customTypeface = Typeface.createFromAsset(context.assets, "fonts/$customFont")
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return customTypeface
 }
 
 fun View.hide() {
@@ -32,11 +48,11 @@ fun EditText.text(): String {
     return text.toString()
 }
 
-fun EditText.isTextBlank(): Boolean{
+fun EditText.isTextBlank(): Boolean {
     return this.text.isBlank() && text.isEmpty()
 }
 
-fun PinEntryView.isTextBlank(): Boolean{
+fun PinEntryView.isTextBlank(): Boolean {
     return this.text.isBlank() && text.isEmpty()
 }
 
@@ -67,11 +83,11 @@ fun String.wLog(msg: String) {
 fun String.log(logType: String, msg: String) {
     if (BuildConfig.DEBUG) {
         when (logType) {
-            "e" -> Log.e(this, msg)
-            "v" -> Log.v(this, msg)
-            "d" -> Log.d(this, msg)
-            "i" -> Log.i(this, msg)
-            "w" -> Log.w(this, msg)
+            "e" -> Log.e(this, "-->>> $msg")
+            "v" -> Log.v(this, "-->>> $msg")
+            "d" -> Log.d(this, "-->>> $msg")
+            "i" -> Log.i(this, "-->>> $msg")
+            "w" -> Log.w(this, "-->>> $msg")
         }
     }
 }
