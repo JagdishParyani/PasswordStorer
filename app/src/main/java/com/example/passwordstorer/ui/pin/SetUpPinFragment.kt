@@ -45,7 +45,7 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
 
     private fun initViews() {
         binding.clSelectPinLayout.show()
-        biometricHelper = BiometricHelper(requireActivity(), this)
+        biometricHelper = getMainActivity()?.let { BiometricHelper(it, this) }!!
         if (!biometricHelper.isDeviceSecure()) {
             binding.tvUseExistingPin.hide()
             binding.rlOr.hide()
@@ -72,7 +72,7 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
             toast(getString(R.string.authentication_success))
             updatePinAndBiometricAuthentication(false)
             navigateToDashboardScreen()
-        },500)
+        }, 500)
     }
 
     override fun onAuthenticationErrorFailed(errorCode: Int?, errString: CharSequence?) {
@@ -140,8 +140,8 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
         }
     }
 
-    private fun loadSetUpPinLayoutAnim(){
-        loadAnimation(binding.clSetUpPin,R.anim.slide_in_right)
+    private fun loadSetUpPinLayoutAnim() {
+        loadAnimation(binding.clSetUpPin, R.anim.slide_in_right)
         loadAnimation(binding.clSelectPinLayout, R.anim.slide_out_left)
     }
 

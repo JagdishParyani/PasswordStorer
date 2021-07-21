@@ -19,7 +19,7 @@
         <com.example.passwordstorer.common.customviews.CustomBottomNav
             android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_55sdp"
             android:layout_alignParentBottom="true"
             android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_20sdp"

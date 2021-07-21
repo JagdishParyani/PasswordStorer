@@ -10,19 +10,15 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.passwordstorer.R
-import com.example.passwordstorer.common.utils.eLog
-import com.example.passwordstorer.common.utils.getColor
-import com.example.passwordstorer.common.utils.getCustomTypeFace
-import com.example.passwordstorer.common.utils.toast
+import com.example.passwordstorer.common.utils.*
 import com.example.passwordstorer.databinding.FragmentHomeBinding
-import com.example.passwordstorer.ui.main.MainActivity
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     lateinit var binding: FragmentHomeBinding
     lateinit var childNavController: NavController
     private val TAG = this::class.simpleName.toString()
-    val TIME_INTERVAL = 2000
+    val timeInterval = 2000
     var mBackPressed = 0L
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,18 +48,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                if (mBackPressed + timeInterval > System.currentTimeMillis()) {
                     val boolean = childNavController.popBackStack()
                     if (!boolean) {
-                        (requireActivity() as MainActivity).finish()
+                        getMainActivity()?.finish()
                     }
                     return
                 } else {
-                    toast("Please click BACK again to exit")
+                    toast(getString(R.string.click_again_to_exit))
                 }
                 mBackPressed = System.currentTimeMillis()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        getMainActivity()?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
     }
 }

@@ -12,12 +12,8 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.passwordstorer.R
 import com.example.passwordstorer.common.listeners.BiometricHelperListener
-import com.example.passwordstorer.common.utils.BiometricHelper
-import com.example.passwordstorer.common.utils.eLog
-import com.example.passwordstorer.common.utils.safeNavigate
-import com.example.passwordstorer.common.utils.toast
+import com.example.passwordstorer.common.utils.*
 import com.example.passwordstorer.databinding.FragmentSplashBinding
-import com.example.passwordstorer.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,7 +23,6 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
     private val TAG = this::class.simpleName.toString()
     private lateinit var binding: FragmentSplashBinding
     private val splashViewModel: SplashViewModel by viewModels()
-
     private var pinSetUpResult = false
     private var biometricSetUpResult = false
 
@@ -48,7 +43,10 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
                     setBiometricBoolValue(biometricSetUpLiveDataResult)
                 })
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         Handler(Looper.getMainLooper()).postDelayed({
             updateNavigation()
         }, 2000)
@@ -59,22 +57,22 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
         this.biometricSetUpResult = biometricSetUpLiveDataResult
     }
 
-    private fun getBiometricBoolValue(): Boolean {
-        return biometricSetUpResult
-    }
+//    private fun getBiometricBoolValue(): Boolean {
+//        return biometricSetUpResult
+//    }
 
     private fun setPinSetUpBoolValue(pinSetUpLiveDataResult: Boolean) {
         TAG.eLog("$pinSetUpLiveDataResult")
         this.pinSetUpResult = pinSetUpLiveDataResult
     }
 
-    private fun getPinSetUpBoolValue(): Boolean {
-        return pinSetUpResult
-    }
+//    private fun getPinSetUpBoolValue(): Boolean {
+//        return pinSetUpResult
+//    }
 
     private fun updateNavigation() {
-        val pinSetUpResult: Boolean = getPinSetUpBoolValue()
-        val biometricSetUpResult: Boolean = getBiometricBoolValue()
+//        val pinSetUpResult: Boolean = getPinSetUpBoolValue()
+//        val biometricSetUpResult: Boolean = getBiometricBoolValue()
         TAG.eLog("pinSetUpResult: $pinSetUpResult -> biometricSetUpResult: $biometricSetUpResult")
         var navDirections: NavDirections? = null
         if (!pinSetUpResult && !biometricSetUpResult) {
@@ -90,8 +88,8 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
     }
 
     private fun startBiometricAuthentication() {
-        val biometricHelper = BiometricHelper(requireActivity(), this)
-        biometricHelper.apply {
+        val biometricHelper = getMainActivity()?.let { BiometricHelper(it, this) }
+        biometricHelper?.apply {
             if (isDeviceSecure()) authenticate()
         }
     }
@@ -105,7 +103,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
         toast(getString(R.string.authentication_failed_try_again))
         val boolean = findNavController().popBackStack(0, true)
         if (!boolean) {
-            (requireActivity() as MainActivity).finish()
+            getMainActivity()?.finish()
         }
     }
 }

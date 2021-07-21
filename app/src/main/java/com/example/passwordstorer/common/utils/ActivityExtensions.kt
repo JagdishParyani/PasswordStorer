@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.passwordstorer.ui.main.MainActivity
 
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }
@@ -19,6 +20,12 @@ fun Fragment.getColor(colorId: Int): Int {
 
 fun Activity.hideKeyboard() {
     hideKeyboard(currentFocus ?: View(this))
+}
+
+fun Fragment.getMainActivity(): MainActivity? {
+    return if (isAdded) {
+        requireActivity() as MainActivity
+    } else null
 }
 
 fun Context.hideKeyboard(view: View) {
