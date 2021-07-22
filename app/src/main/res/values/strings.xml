@@ -3,6 +3,7 @@
 
     <!--  Fonts  -->
     <string name="poppins_regular">PoppinsRegular.ttf</string>
+    <string name="poppins_bold">PoppinsBold.ttf</string>
     <string name="font_awesome_solid">fa-solid.ttf</string>
 
     <string name="back_icon">&#xf137;</string>
@@ -42,4 +43,15 @@
     <string name="dashboard">Dashboard</string>
     <string name="click_again_to_exit">Please click BACK again to exit</string>
 
+<!--   Array -->
+
+    <string-array name="category_array">
+        <item>Google</item>
+        <item>Yahoo</item>
+        <item>Credit Card</item>
+        <item>Debit Card</item>
+        <item>Bank Details</item>
+        <item>KYC Details</item>
+        <item>Simple Text</item>
+    </string-array>
 </resources>

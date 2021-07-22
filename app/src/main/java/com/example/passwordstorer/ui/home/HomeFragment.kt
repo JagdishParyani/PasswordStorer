@@ -31,7 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun initViews() {
         binding.bottomNavigationView.apply {
             enableAnimation(false)
-            setRippleColor(ColorStateList.valueOf(getColor(R.color.item_selected)))
+            setRippleColor(ColorStateList.valueOf(getColor(R.color.coal_black)))
             disableTooltipText()
             setTypeface(getCustomTypeFace(getString(R.string.poppins_regular)))
             setIconSize(22f)

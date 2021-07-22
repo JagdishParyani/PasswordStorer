@@ -57,22 +57,12 @@ class SplashFragment : Fragment(R.layout.fragment_splash), BiometricHelperListen
         this.biometricSetUpResult = biometricSetUpLiveDataResult
     }
 
-//    private fun getBiometricBoolValue(): Boolean {
-//        return biometricSetUpResult
-//    }
-
     private fun setPinSetUpBoolValue(pinSetUpLiveDataResult: Boolean) {
         TAG.eLog("$pinSetUpLiveDataResult")
         this.pinSetUpResult = pinSetUpLiveDataResult
     }
 
-//    private fun getPinSetUpBoolValue(): Boolean {
-//        return pinSetUpResult
-//    }
-
     private fun updateNavigation() {
-//        val pinSetUpResult: Boolean = getPinSetUpBoolValue()
-//        val biometricSetUpResult: Boolean = getBiometricBoolValue()
         TAG.eLog("pinSetUpResult: $pinSetUpResult -> biometricSetUpResult: $biometricSetUpResult")
         var navDirections: NavDirections? = null
         if (!pinSetUpResult && !biometricSetUpResult) {
