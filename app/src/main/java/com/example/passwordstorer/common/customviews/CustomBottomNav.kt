@@ -261,6 +261,14 @@ class CustomBottomNav : BottomNavigationViewInner {
         }
     }
 
+    override fun setLetterSpacing(spacing: Float): BottomNavigationViewInner {
+        return try {
+            super.setLetterSpacing(spacing)
+        } catch (e: Exception) {
+            this
+        }
+    }
+
     override fun setupWithViewPager(viewPager: ViewPager?): BottomNavigationViewInner? {
         return try {
             super.setupWithViewPager(viewPager)

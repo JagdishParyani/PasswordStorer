@@ -28,6 +28,18 @@ fun Fragment.getMainActivity(): MainActivity? {
     } else null
 }
 
+fun Fragment.getStringArray(id: Int): Array<out String> {
+    return resources.getStringArray(id)
+}
+
+fun Fragment.getIntArray(id: Int): IntArray {
+    return resources.getIntArray(id)
+}
+
+fun isInsertSuccessful(result: Long): Boolean{
+    return result != -1L
+}
+
 fun Context.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
@@ -46,4 +58,12 @@ fun Fragment.loadAnimation(vararg views: View, animId: Int) {
     for (view in views) {
         view.startAnimation(AnimationUtils.loadAnimation(requireContext(), animId))
     }
+}
+
+/**
+ * This method will return size in SDP & SSP which ever is requested in dimeSize param
+ * @param dimenSize: Int
+ */
+fun Fragment.getSizeInSDP(dimenSize: Int): Int {
+    return requireContext().resources.getDimensionPixelSize(dimenSize)
 }

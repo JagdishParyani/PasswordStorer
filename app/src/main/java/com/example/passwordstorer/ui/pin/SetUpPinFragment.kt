@@ -206,7 +206,7 @@ class SetUpPinFragment : Fragment(R.layout.fragment_set_up_pin), View.OnClickLis
 
     private fun setUpInsertPinLiveData() {
         setUpPinViewModel.insertResultLiveData.observe(viewLifecycleOwner, Observer { result ->
-            if (result != -1L) {
+            if (isInsertSuccessful(result)) {
                 toast(getString(R.string.pin_saved_success))
                 updatePinAndBiometricAuthentication(true)
                 navigateToLoginScreen()

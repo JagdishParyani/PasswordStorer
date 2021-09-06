@@ -5,8 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.passwordstorer.databinding.ItemDashboardAdapterBinding
+import com.example.passwordstorer.room.entity.CategoryEntity
+import java.util.*
 
-class DashBoardAdapter(private val context: Context, private val categoryList: List<String>) :
+class DashBoardAdapter(
+    private val context: Context,
+    private val categoryList: ArrayList<CategoryEntity>
+) :
     RecyclerView.Adapter<DashBoardAdapter.DashBoardViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashBoardViewHolder {
@@ -22,11 +27,19 @@ class DashBoardAdapter(private val context: Context, private val categoryList: L
 
     override fun getItemCount(): Int = categoryList.size
 
+    fun updateData(categoriesList: List<CategoryEntity>) {
+        if (categoriesList.isNotEmpty()) {
+            this.categoryList.clear()
+            this.categoryList.addAll(categoriesList)
+            notifyDataSetChanged()
+        }
+    }
+
     inner class DashBoardViewHolder(private val binding: ItemDashboardAdapterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(category: String, position: Int) {
-            binding
+        fun bind(category: CategoryEntity, position: Int) {
+            binding.tvCategory.text = category.categoryName
         }
 
     }

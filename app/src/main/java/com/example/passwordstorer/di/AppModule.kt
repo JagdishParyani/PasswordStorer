@@ -3,6 +3,7 @@ package com.example.passwordstorer.di
 import android.content.Context
 import androidx.room.Room
 import com.example.passwordstorer.common.utils.Constants
+import com.example.passwordstorer.room.dao.CategoryDao
 import com.example.passwordstorer.room.dao.PinDao
 import com.example.passwordstorer.room.db.AppDataBase
 import dagger.Module
@@ -29,4 +30,8 @@ object AppModule {
     @Singleton
     @Provides
     fun providePinDao(appDataBase: AppDataBase): PinDao = appDataBase.getPinDao()
+
+    @Singleton
+    @Provides
+    fun provideCategoryDao(appDataBase: AppDataBase): CategoryDao = appDataBase.getCategoryDao()
 }

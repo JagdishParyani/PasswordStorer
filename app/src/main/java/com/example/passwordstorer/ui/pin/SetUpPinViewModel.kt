@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.example.passwordstorer.common.utils.PreferenceKeys
 import com.example.passwordstorer.datastore.DataStoreManager
 import com.example.passwordstorer.room.entity.PinEntity
-import com.example.passwordstorer.room.repository.AppDataBaseRepository
+import com.example.passwordstorer.room.repository.pin.PinDBRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,22 +12,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SetUpPinViewModel @Inject constructor(
-    private val appDataBaseRepository: AppDataBaseRepository,
+    private val pinDBRepo: PinDBRepo,
     private val dataStoreManager: DataStoreManager
 ) :
     ViewModel() {
 
     val liveDataPin: LiveData<String> = liveData(Dispatchers.IO) {
-        emit(appDataBaseRepository.getPinFromDb())
+        emit(pinDBRepo.getPinFromDb())
     }
 
     var insertResultLiveData = MutableLiveData<Long>()
 
     fun insertPin(pin: PinEntity) {
-        var result: Long = -1
         viewModelScope.launch {
-            result = appDataBaseRepository.insertPin(pin)
-            insertResultLiveData.value = result
+            insertResultLiveData.value = pinDBRepo.insertPin(pin)
         }
     }
 

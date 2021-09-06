@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/cardview_dark_background"
+        app:cardElevation="0dp"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_6sdp">
+
+            <com.example.passwordstorer.common.customviews.CustomTextView
+                android:id="@+id/tv_icon"
+                style="@style/largeTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/forward_arrow_icon"
+                app:customFont="@string/font_awesome_solid"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.passwordstorer.common.customviews.CustomTextView
+                android:id="@+id/tv_category"
+                style="@style/mediumTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_12sdp"
+                android:textAlignment="viewStart"
+                android:textSize="@dimen/medium_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/customTextView"
+                app:layout_constraintStart_toEndOf="@id/tv_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Bank Details" />
+
+            <com.example.passwordstorer.common.customviews.CustomTextView
+                android:id="@+id/customTextView"
+                style="@style/mediumTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toEndOf="@id/tv_category"
+                android:padding="@dimen/_12sdp"
+                android:text="@string/forward_arrow_icon"
+                android:visibility="visible"
+                app:customFont="@string/font_awesome_solid"
+                app:layout_constraintBottom_toBottomOf="@id/tv_category"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/tv_category"
+                app:layout_constraintTop_toTopOf="@id/tv_category" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_below="@id/cardview"
+        android:visibility="gone"
+        android:background="@color/grey" />
+</RelativeLayout>

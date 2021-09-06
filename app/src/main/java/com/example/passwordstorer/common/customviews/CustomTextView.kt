@@ -30,6 +30,7 @@ class CustomTextView : AppCompatTextView {
     }
 
     private fun setCustomStyle(context: Context, attrs: AttributeSet?) {
+        letterSpacing = 0.1f
         val customView = context.obtainStyledAttributes(attrs, R.styleable.CustomTextView)
         val customFont = customView.getString(R.styleable.CustomTextView_customFont)
         initCustomFont(context, customFont)

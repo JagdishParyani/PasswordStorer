@@ -719,6 +719,16 @@ public class BottomNavigationViewInner extends BottomNavigationView {
         return this;
     }
 
+    public BottomNavigationViewInner setLetterSpacing(float spacing){
+        int count = getItemCount();
+        for (int i = 0; i < count; i++) {
+            getLargeLabelAt(i).setLetterSpacing(spacing);
+            getSmallLabelAt(i).setLetterSpacing(spacing);
+        }
+        mMenuView.updateMenuView();
+        return this;
+    }
+
     /**
      * get private filed in this specific object
      *
